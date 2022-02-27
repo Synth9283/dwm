@@ -61,6 +61,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_mint, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+/* custom */
+static const char *maim[] = { "/bin/sh", "-c", "maim -ui $(xdotool selectwindow) | xclip -selection clipboard -t image/png", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -97,6 +99,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    /* custom */
+    { MODKEY|ShiftMask,             XK_s,      spawn,          {.v = maim } },
 };
 
 /* button definitions */
